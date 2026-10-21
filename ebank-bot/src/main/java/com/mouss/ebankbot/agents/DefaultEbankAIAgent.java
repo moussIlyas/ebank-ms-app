@@ -4,25 +4,19 @@ import com.mouss.ebankbot.tools.WebSearchTool;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DefaultEbankAIAgent implements EbankAIAgent {
 
-    private static final String SYSTEM_PROMPT = """
-            You are the e-banking assistant of Ebank.
-            Answer clearly and concisely in the language of the user.
-            Use the webSearch tool whenever the user asks about current information,
-            news, exchange rates, or anything that may require up-to-date data.
-            Never invent banking data or search results.
-            """;
-
     private final ChatClient chatClient;
 
     public DefaultEbankAIAgent(AgentProvider agentProvider, ChatMemory chatMemory,
-                               WebSearchTool webSearchTool) {
+                               WebSearchTool webSearchTool,
+                               @Value("${app.agent.system-prompt}") String systemPrompt) {
         this.chatClient = agentProvider.agentBuilder()
-                .defaultSystem(SYSTEM_PROMPT)
+                .defaultSystem(systemPrompt)
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .defaultTools(webSearchTool)
                 .build();
