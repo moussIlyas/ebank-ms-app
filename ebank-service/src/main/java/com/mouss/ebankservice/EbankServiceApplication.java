@@ -19,6 +19,9 @@ public class EbankServiceApplication {
     @Bean
     CommandLineRunner commandLineRunner(EbankService ebankService) {
         return args -> {
+            if (ebankService.count() > 0) {
+                return;
+            }
             for(int i = 1; i<=3; i++){
                 for( int j = 0; j<5; j++) {
                     ebankService.save(BankAccount.builder()

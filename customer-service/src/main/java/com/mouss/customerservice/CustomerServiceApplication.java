@@ -20,6 +20,9 @@ public class CustomerServiceApplication {
     @Bean
     CommandLineRunner commandLineRunner(CustomerService customerService) {
         return args -> {
+            if (customerService.count() > 0) {
+                return;
+            }
             List<String> names = List.of("Ilyas", "Omar", "Nadir");
             names.forEach(name -> {
                 customerService.saveCustomer(Customer.builder()

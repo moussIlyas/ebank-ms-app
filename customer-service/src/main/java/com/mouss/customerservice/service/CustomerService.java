@@ -15,6 +15,10 @@ public class CustomerService {
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
+    public long count() {
+        return customerRepository.count();
+    }
     @McpTool(description = "Get all customers")
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();

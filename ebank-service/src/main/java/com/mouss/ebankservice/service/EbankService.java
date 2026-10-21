@@ -20,6 +20,10 @@ public class EbankService {
         this.accountRepository = accountRepository;
         this.customerRestClient = customerRestClient;
     }
+
+    public long count() {
+        return accountRepository.count();
+    }
     public List<BankAccount> getAllBankAccounts(){
         return accountRepository.findAll();
     }
