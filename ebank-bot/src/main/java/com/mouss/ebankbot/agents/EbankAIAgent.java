@@ -1,4 +1,6 @@
 package com.mouss.ebankbot.agents;
 
-public class EbankAIAgent {
+public interface EbankAIAgent {
+
+    String chat(String conversationId, String message);
 }
