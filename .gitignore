@@ -33,3 +33,6 @@ build/
 .vscode/
 ebank-bot/src/main/resources/application-local.properties
 *~
+
+### Secrets (never commit) ###
+.env
