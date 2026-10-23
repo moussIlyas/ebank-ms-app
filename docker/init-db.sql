@@ -1,7 +1,0 @@
-CREATE DATABASE IF NOT EXISTS `customer-db`;
-CREATE DATABASE IF NOT EXISTS `accounts-db`;
-
-CREATE USER IF NOT EXISTS 'ebank'@'%' IDENTIFIED BY 'ebank';
-GRANT ALL PRIVILEGES ON `customer-db`.* TO 'ebank'@'%';
-GRANT ALL PRIVILEGES ON `accounts-db`.* TO 'ebank'@'%';
-FLUSH PRIVILEGES;
